@@ -1,23 +1,70 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
+import heroLondon from "@/assets/hero-london.jpg";
+import heroHongKong from "@/assets/hero-hongkong.jpg";
+import heroSydneyBar from "@/assets/hero-sydney-bar.jpg";
+
+const heroImages = [
+  { src: heroBg, alt: "Exclusive Tech Leadership" },
+  { src: heroLondon, alt: "London Tech Leaders" },
+  { src: heroHongKong, alt: "Hong Kong Innovation" },
+  { src: heroSydneyBar, alt: "Sydney Premium Venue" }
+];
 
 export const Hero = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        (prevIndex + 1) % heroImages.length
+      );
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToApplication = () => {
     const element = document.getElementById('apply');
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{
-        backgroundImage: `linear-gradient(rgba(26, 42, 58, 0.85), rgba(18, 22, 27, 0.9)), url(${heroBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      }}
-    >
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Rotating Background Images */}
+      {heroImages.map((image, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-2000 ${
+            index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            backgroundImage: `url(${image.src})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed'
+          }}
+        />
+      ))}
+      
+      {/* Dark overlay with gradient */}
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/80" />
+      
+      {/* Image indicators */}
+      <div className="absolute bottom-8 right-8 flex space-x-2 z-20">
+        {heroImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentImageIndex 
+                ? 'bg-accent-gold shadow-glow' 
+                : 'bg-white/40 hover:bg-white/60'
+            }`}
+          />
+        ))}
+      </div>
       
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <div className="animate-fade-in">
