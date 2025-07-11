@@ -2,41 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+/* Exclusive Inside Edge Design System - Premium Tech Event Branding
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Exclusive Color Palette */
+    --background: 46 25% 97%;
+    --foreground: 215 28% 17%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 28% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 28% 17%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Deep navy primary with gold accent */
+    --primary: 215 28% 17%;
+    --primary-foreground: 46 25% 97%;
+    
+    /* Elegant gold accent */
+    --accent-gold: 45 100% 51%;
+    --accent-gold-foreground: 215 28% 17%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Sophisticated secondary */
+    --secondary: 215 20% 92%;
+    --secondary-foreground: 215 28% 17%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Refined muted tones */
+    --muted: 215 16% 94%;
+    --muted-foreground: 215 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Premium accent */
+    --accent: 215 20% 92%;
+    --accent-foreground: 215 28% 17%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 215 20% 88%;
+    --input: 215 20% 94%;
+    --ring: 215 28% 17%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+    
+    /* Premium gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(215 28% 17% / 0.95), hsl(215 35% 12% / 0.95));
+    --gradient-gold: linear-gradient(135deg, hsl(45 100% 51%), hsl(35 100% 45%));
+    --gradient-subtle: linear-gradient(180deg, hsl(46 25% 98%), hsl(215 20% 96%));
+    
+    /* Elegant shadows */
+    --shadow-premium: 0 20px 40px -12px hsl(215 28% 17% / 0.25);
+    --shadow-card: 0 8px 32px -8px hsl(215 28% 17% / 0.12);
+    --shadow-glow: 0 0 40px hsl(45 100% 51% / 0.3);
+    
+    /* Smooth transitions */
+    --transition-luxury: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +123,76 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  /* Premium Typography */
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Premium Button Variants */
+  .btn-luxury {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg;
+    background: var(--gradient-gold);
+    color: hsl(var(--accent-gold-foreground));
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-luxury);
+  }
+  
+  .btn-luxury:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-premium);
+  }
+  
+  .btn-ghost-luxury {
+    @apply inline-flex items-center justify-center px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-lg backdrop-blur-sm;
+    transition: var(--transition-luxury);
+  }
+  
+  .btn-ghost-luxury:hover {
+    @apply bg-white/10 border-white/50;
+    transform: translateY(-1px);
+  }
+
+  /* Premium Cards */
+  .card-luxury {
+    @apply bg-card rounded-xl p-8 border border-border;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-luxury);
+  }
+  
+  .card-luxury:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-premium);
+  }
+
+  /* Premium Form Elements */
+  .input-luxury {
+    @apply w-full px-6 py-4 bg-card border border-border rounded-lg text-foreground placeholder:text-muted-foreground;
+    transition: var(--transition-luxury);
+  }
+  
+  .input-luxury:focus {
+    @apply outline-none ring-2 ring-primary border-primary;
+  }
+
+  /* Premium Gradients */
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .gradient-gold {
+    background: var(--gradient-gold);
+  }
+  
+  .gradient-subtle {
+    background: var(--gradient-subtle);
   }
 }
