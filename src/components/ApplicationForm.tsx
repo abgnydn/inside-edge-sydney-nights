@@ -1,90 +1,6 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
 
 export const ApplicationForm = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    companyRole: "",
-    linkedin: "",
-    challenge: "",
-    agreement: false
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.agreement) {
-      toast({
-        title: "Agreement Required",
-        description: "Please confirm your understanding of the selection process.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-
-
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          'form-name': 'application-form',
-          fullName: formData.fullName,
-          email: formData.email,
-          companyRole: formData.companyRole,
-          linkedin: formData.linkedin,
-          challenge: formData.challenge,
-          agreement: formData.agreement.toString(),
-          submittedAt: new Date().toISOString()
-        }).toString()
-      });
-
-
-      if (response.ok) {
-        toast({
-          title: "Application Submitted Successfully",
-          description: "Thank you for your interest. You'll hear from us within 48 hours.",
-        });
-
-        // Reset form
-        setFormData({
-          fullName: "",
-          email: "",
-          companyRole: "",
-          linkedin: "",
-          challenge: "",
-          agreement: false
-        });
-      } else {
-        throw new Error('Failed to submit application');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      toast({
-        title: "Submission Failed",
-        description: "There was an error submitting your application. Please try again.",
-        variant: "destructive"
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
-    }));
-  };
 
   return (
     <section id="apply" className="py-24 px-6 bg-primary text-white relative overflow-hidden">
@@ -197,17 +113,15 @@ export const ApplicationForm = () => {
         </div>
         
         <form 
-          name="application-form" 
-          method="POST" 
-          data-netlify="true" 
-          className="space-y-6 mt-4"
-        >
-         <div>
+              name="application-form" 
+              method="POST" 
+              data-netlify="true"
+              className="space-y-6 mt-4"
+            >
+              <div>
                 <input
                   type="text"
                   name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
                   placeholder="Full Name *"
                   required
                   className="input-luxury bg-white/10 border-white/30 text-white placeholder:text-white/60"
@@ -218,8 +132,6 @@ export const ApplicationForm = () => {
                 <input
                   type="email"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
                   placeholder="Email Address *"
                   required
                   className="input-luxury bg-white/10 border-white/30 text-white placeholder:text-white/60"
@@ -230,8 +142,6 @@ export const ApplicationForm = () => {
                 <input
                   type="text"
                   name="companyRole"
-                  value={formData.companyRole}
-                  onChange={handleChange}
                   placeholder="Company + Role *"
                   required
                   className="input-luxury bg-white/10 border-white/30 text-white placeholder:text-white/60"
@@ -242,8 +152,6 @@ export const ApplicationForm = () => {
                 <input
                   type="text"
                   name="linkedin"
-                  value={formData.linkedin}
-                  onChange={handleChange}
                   placeholder="LinkedIn or GitHub Profile"
                   className="input-luxury bg-white/10 border-white/30 text-white placeholder:text-white/60"
                 />
@@ -252,8 +160,6 @@ export const ApplicationForm = () => {
               <div>
                 <textarea
                   name="challenge"
-                  value={formData.challenge}
-                  onChange={handleChange}
                   placeholder="What topic or challenge would you bring to the roundtable? *"
                   required
                   rows={4}
@@ -266,8 +172,6 @@ export const ApplicationForm = () => {
                   type="checkbox"
                   name="agreement"
                   id="agreement"
-                  checked={formData.agreement}
-                  onChange={handleChange}
                   required
                   className="mt-1 w-4 h-4 text-accent-gold bg-white/10 border-white/30 rounded focus:ring-accent-gold"
                 />
@@ -279,22 +183,17 @@ export const ApplicationForm = () => {
 
               <Button
                 type="submit"
-                disabled={isSubmitting}
-                className="btn-luxury w-full text-lg py-6 relative overflow-hidden group disabled:opacity-70"
+                className="btn-luxury w-full text-lg py-6 relative overflow-hidden group"
               >
-                <span className="relative z-10">
-                  {isSubmitting ? "Submitting..." : "Request Invitation"}
-                </span>
+                <span className="relative z-10">Request Invitation</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent-gold to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Button>
               
-              {/* Additional trust elements */}
               <div className="text-center text-white/70 text-sm mt-4">
                 <p>🔒 Your information is kept strictly confidential</p>
                 <p className="mt-1">⚡ Response within 48 hours guaranteed</p>
               </div>
-          
-        </form>
+            </form>
       </div>
         </div>
       </div>
