@@ -197,7 +197,10 @@ export const ApplicationForm = () => {
               <span className="text-primary text-sm font-semibold">Exclusive Application</span>
             </div>
             
-            <form onSubmit={handleSubmit} className="space-y-6 mt-4" name="application-form" data-netlify="true">
+            <form   name="application-form"
+  data-netlify="true"
+  method="POST"
+  action="/">
               <div>
                 <input
                   type="text"
