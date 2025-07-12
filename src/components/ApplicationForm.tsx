@@ -116,6 +116,7 @@ export const ApplicationForm = () => {
               name="application-form" 
               method="POST" 
               data-netlify="true"
+              action="/thanks.html"
               className="space-y-6 mt-4"
             >
               <div>
