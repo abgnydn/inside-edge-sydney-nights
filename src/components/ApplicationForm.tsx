@@ -202,6 +202,8 @@ export const ApplicationForm = () => {
           data-netlify="true" 
           className="space-y-6 mt-4"
         >
+<input type="hidden" name="form-name" value="application-form" />
+
 
          <div>
                 <input
