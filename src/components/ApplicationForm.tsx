@@ -4,6 +4,7 @@ import { useToast } from "@/hooks/use-toast";
 
 export const ApplicationForm = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -13,7 +14,7 @@ export const ApplicationForm = () => {
     agreement: false
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.agreement) {
       toast({
@@ -24,21 +25,57 @@ export const ApplicationForm = () => {
       return;
     }
 
-    // Here you would typically send the data to your backend
-    toast({
-      title: "Application Submitted",
-      description: "Thank you for your interest. You'll hear from us within 48 hours.",
-    });
+    setIsSubmitting(true);
 
-    // Reset form
-    setFormData({
-      fullName: "",
-      email: "",
-      companyRole: "",
-      linkedin: "",
-      challenge: "",
-      agreement: false
-    });
+    try {
+
+
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          'form-name': 'application-form',
+          fullName: formData.fullName,
+          email: formData.email,
+          companyRole: formData.companyRole,
+          linkedin: formData.linkedin,
+          challenge: formData.challenge,
+          agreement: formData.agreement.toString(),
+          submittedAt: new Date().toISOString()
+        }).toString()
+      });
+
+
+      if (response.ok) {
+        toast({
+          title: "Application Submitted Successfully",
+          description: "Thank you for your interest. You'll hear from us within 48 hours.",
+        });
+
+        // Reset form
+        setFormData({
+          fullName: "",
+          email: "",
+          companyRole: "",
+          linkedin: "",
+          challenge: "",
+          agreement: false
+        });
+      } else {
+        throw new Error('Failed to submit application');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Submission Failed",
+        description: "There was an error submitting your application. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -160,7 +197,7 @@ export const ApplicationForm = () => {
               <span className="text-primary text-sm font-semibold">Exclusive Application</span>
             </div>
             
-            <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+            <form onSubmit={handleSubmit} className="space-y-6 mt-4" name="application-form" data-netlify="true">
               <div>
                 <input
                   type="text"
@@ -238,9 +275,12 @@ export const ApplicationForm = () => {
 
               <Button
                 type="submit"
-                className="btn-luxury w-full text-lg py-6 relative overflow-hidden group"
+                disabled={isSubmitting}
+                className="btn-luxury w-full text-lg py-6 relative overflow-hidden group disabled:opacity-70"
               >
-                <span className="relative z-10">Request Invitation</span>
+                <span className="relative z-10">
+                  {isSubmitting ? "Submitting..." : "Request Invitation"}
+                </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-accent-gold to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Button>
               
