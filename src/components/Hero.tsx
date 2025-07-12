@@ -92,10 +92,6 @@ export const Hero = () => {
             >
               Apply for Access
             </Button>
-            
-            <button className="btn-ghost-luxury text-lg px-10 py-6">
-              Learn More
-            </button>
           </div>
         </div>
       </div>
