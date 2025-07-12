@@ -192,13 +192,18 @@ export const ApplicationForm = () => {
           </div>
 
           <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 relative">
-            {/* Premium form styling indicator */}
-            <div className="absolute -top-3 left-8 bg-accent-gold px-4 py-1 rounded-full">
-              <span className="text-primary text-sm font-semibold">Exclusive Application</span>
-            </div>
-            
-            <form onSubmit={handleSubmit} className="space-y-6 mt-4" name="application-form" data-netlify="true">
-              <div>
+        <div className="absolute -top-3 left-8 bg-accent-gold px-4 py-1 rounded-full">
+          <span className="text-primary text-sm font-semibold">Exclusive Application</span>
+        </div>
+        
+        <form 
+          name="application-form" 
+          method="POST" 
+          data-netlify="true" 
+          className="space-y-6 mt-4"
+        >
+
+         <div>
                 <input
                   type="text"
                   name="fullName"
@@ -289,8 +294,9 @@ export const ApplicationForm = () => {
                 <p>🔒 Your information is kept strictly confidential</p>
                 <p className="mt-1">⚡ Response within 48 hours guaranteed</p>
               </div>
-            </form>
-          </div>
+          
+        </form>
+      </div>
         </div>
       </div>
     </section>
