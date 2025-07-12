@@ -119,6 +119,7 @@ export const ApplicationForm = () => {
               action="/thanks.html"
               className="space-y-6 mt-4"
             >
+              <input type="hidden" name="form-name" value="application-form" />
               <div>
                 <input
                   type="text"
