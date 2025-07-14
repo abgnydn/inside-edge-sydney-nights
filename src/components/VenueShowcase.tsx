@@ -25,7 +25,7 @@ export const VenueShowcase = () => {
             
             <p className="text-xl text-white/90 leading-relaxed">
               Experience unparalleled luxury in the heart of Sydney's CBD. Our exclusive 
-              venue offers panoramic harbour views, state-of-the-art facilities, and an 
+              venue offers state-of-the-art facilities, and an 
               atmosphere of refined sophistication.
             </p>
             
