@@ -12,26 +12,6 @@ export const Footer = () => {
           </p>
         </div>
         
-        <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 mb-8">
-          <a 
-            href="mailto:hello@insideedge.tech" 
-            className="text-muted-foreground hover:text-accent-gold transition-colors duration-300"
-          >
-            hello@insideedge.tech
-          </a>
-          <a 
-            href="https://linkedin.com/company/inside-edge" 
-            className="text-muted-foreground hover:text-accent-gold transition-colors duration-300"
-          >
-            LinkedIn
-          </a>
-          <a 
-            href="#" 
-            className="text-muted-foreground hover:text-accent-gold transition-colors duration-300"
-          >
-            Privacy Policy
-          </a>
-        </div>
         
         <div className="w-full h-px bg-border mb-8" />
         
