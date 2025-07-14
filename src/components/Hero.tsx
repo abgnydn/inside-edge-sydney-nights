@@ -31,7 +31,7 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#18181b]">
       {/* Rotating Background Images */}
       {heroImages.map((image, index) => (
         <div
