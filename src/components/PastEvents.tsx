@@ -1,39 +1,36 @@
-import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { X } from "lucide-react";
 import newYorkImg from "@/assets/newyork-event.jpg";
 import londonImg from "@/assets/london-event.jpg";
 import hongKongImg from "@/assets/hongkong-event.jpg";
 
-export const PastEvents = () => {
-  const [selectedEvent, setSelectedEvent] = useState<number | null>(null);
-  const events = [
-    {
-      image: newYorkImg,
-      city: "New York",
-      date: "January 18, 2025",
-      description: "Manhattan Tech Leaders Summit",
-      testimonial: "One of the most valuable evenings for genuine tech discourse. The caliber of conversation was exceptional.",
-      attendee: "M.C., CTO, Series C Fintech"
-    },
-    {
-      image: londonImg,
-      city: "London",
-      date: "April 10, 2025",
-      description: "European Engineering Roundtable",
-      testimonial: "Finally, a tech event where we could discuss real challenges without the usual corporate theater.",
-      attendee: "J.R., Head of Engineering, Scale-up"
-    },
-    {
-      image: hongKongImg,
-      city: "Hong Kong",
-      date: "August 22, 2025",
-      description: "Asia-Pacific Innovation Forum",
-      testimonial: "The connections made that evening led to three strategic partnerships. Unmatched quality of attendees.",
-      attendee: "S.L., VP Engineering, Unicorn Startup"
-    }
-  ];
+const events = [
+  {
+    image: newYorkImg,
+    city: "New York",
+    date: "January 18, 2025",
+    description: "Manhattan Tech Leaders Summit",
+    testimonial: "One of the most valuable evenings for genuine tech discourse. The caliber of conversation was exceptional.",
+    attendee: "M.C., CTO, Series C Fintech"
+  },
+  {
+    image: londonImg,
+    city: "London",
+    date: "April 10, 2025",
+    description: "European Engineering Roundtable",
+    testimonial: "Finally, a tech event where we could discuss real challenges without the usual corporate theater.",
+    attendee: "J.R., Head of Engineering, Scale-up"
+  },
+  {
+    image: hongKongImg,
+    city: "Hong Kong",
+    date: "August 22, 2025",
+    description: "Asia-Pacific Innovation Forum",
+    testimonial: "The connections made that evening led to three strategic partnerships. Unmatched quality of attendees.",
+    attendee: "S.L., VP Engineering, Unicorn Startup"
+  }
+];
 
+export const PastEvents = () => {
   return (
     <section className="py-24 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
