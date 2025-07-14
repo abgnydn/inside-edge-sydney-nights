@@ -82,7 +82,7 @@ export const Hero = () => {
           </p>
           
           <p className="text-lg text-white/80 mb-12 font-light">
-            November 14 · Invite-Only · Premium Access
+            November 13 · Invite-Only · Premium Access
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">

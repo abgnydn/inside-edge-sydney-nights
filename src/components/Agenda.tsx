@@ -82,7 +82,7 @@ export const Agenda = () => {
                 </svg>
               </div>
               <h3 className="font-display text-xl font-semibold text-primary mb-2">Date</h3>
-              <p className="text-muted-foreground">November 14<br />Thursday Evening</p>
+              <p className="text-muted-foreground">November 13<br />Thursday Evening</p>
             </div>
             
             <div className="text-center">
